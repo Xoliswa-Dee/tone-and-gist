@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tone &amp; Gist</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><span>Tone &amp; Gist</span><span>Summary and sentiment analysis</span></div>
+
+  <section class="hero">
+    <div>
+      <h1>Get the gist and the mood of any text.</h1>
+      <p class="lede">Paste text or upload a document. The page writes a short summary, scores how positive or negative it reads, and points out what stands out.</p>
+      <div class="legend" aria-label="Colour key">
+        <span><i class="neg"></i>Negative</span>
+        <span><i class="neu"></i>Neutral</span>
+        <span><i class="pos"></i>Positive</span>
+      </div>
+    </div>
+
+    <div class="analyzer" id="drop">
+      <label class="cap" for="txt">Paste text</label>
+      <textarea id="txt" spellcheck="false" placeholder="Paste an email, review, article, report or anything else you want summarised and mood-checked."></textarea>
+      <div class="actions">
+        <button class="btn primary" type="button" id="go">Analyze text</button>
+        <label class="btn" for="file">Upload document<input class="sr" type="file" id="file" accept=".txt,.md,.markdown,.csv,.docx,.pdf,text/plain"></label>
+        <span class="status" id="status" role="status" aria-live="polite"></span>
+      </div>
+      <div class="examples" id="samples"><span>Try a sample:</span></div>
+      <p class="hint">Accepts .txt, .md, .csv, .docx and .pdf with selectable text. You can also drop a file onto this box. Files are sent only to the Python server running on your own computer.</p>
+    </div>
+  </section>
+
+  <div id="results" hidden>
+    <section class="block" aria-labelledby="ovH" style="padding-top:8px">
+      <h2 class="sr" id="ovH">Overview</h2>
+      <div class="verdictRow">
+        <div>
+          <div class="verdict" id="vTitle"></div>
+          <p class="muted" id="vSub"></p>
+        </div>
+        <div>
+          <div class="track" role="img" aria-label="Average tone from negative to positive"><div class="marker" id="vMark"></div></div>
+          <div class="ends"><span>Negative</span><span>Neutral</span><span>Positive</span></div>
+        </div>
+      </div>
+      <div class="kpis" id="kpis"></div>
+    </section>
+
+    <section class="block" aria-labelledby="sumH">
+      <div class="headrow">
+        <div><h2 id="sumH">Summary</h2><p class="sub" id="sumSub"></p></div>
+        <div class="seg" role="group" aria-label="Summary length">
+          <button type="button" data-length="short" aria-pressed="false">Short</button>
+          <button type="button" data-length="medium" aria-pressed="true">Medium</button>
+          <button type="button" data-length="long" aria-pressed="false">Long</button>
+        </div>
+      </div>
+      <ul class="sumlist" id="sumList"></ul>
+      <h3 style="margin-top:12px">Key topics</h3>
+      <div class="topics" id="topics"></div>
+    </section>
+
+    <section class="block" aria-labelledby="moodH">
+      <h2 id="moodH">Mood</h2>
+      <div class="grid2">
+        <div>
+          <h3>How the tone moves through the text</h3>
+          <p class="sub">Average sentence score for each stretch, from the start to the end.</p>
+          <div class="chartbox" id="arc"></div>
+          <p class="nodata" id="arcNo" hidden>The text is too short to show how the tone moves.</p>
+        </div>
+        <div>
+          <h3>Emotion words</h3>
+          <p class="sub" id="emoSub"></p>
+          <div class="emo" id="emo"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="stH">
+      <h2 id="stH">Passages that stand out</h2>
+      <div class="grid2 even">
+        <div><h3>Most positive</h3><div id="topPos"></div></div>
+        <div><h3>Most negative</h3><div id="topNeg"></div></div>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="inH">
+      <div class="headrow">
+        <h2 id="inH">Insights</h2>
+        <button class="btn small" type="button" id="copy">Copy summary and insights</button>
+      </div>
+      <ul class="insights" id="insights"></ul>
+      <details>
+        <summary>See the text with scored words highlighted</summary>
+        <div class="annot" id="annot"></div>
+        <p class="hint">Hover a highlighted word to see its value, and whether a nearby “not” flipped it.</p>
+      </details>
+    </section>
+  </div>
+
+  <footer>Tone &amp; Gist. All analysis runs in Python on your own machine.</footer>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>
