@@ -18,7 +18,7 @@ It is written in Python and **the core has no dependencies**, only the standard 
 You need Python 3.9 or newer.
 
 ```bash
-git clone <your-repo-url> tone-and-gist
+git clone https://github.com/Xoliswa-Dee/tone-and-gist
 cd tone-and-gist
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
